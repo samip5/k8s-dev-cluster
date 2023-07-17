@@ -1,0 +1,8 @@
+---
+kubernetes:
+  children:
+    master:
+      hosts:
+        m1:
+          ansible_user: root
+          ansible_host: 10.0.110.18

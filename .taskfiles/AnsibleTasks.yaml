@@ -14,12 +14,12 @@ tasks:
     desc: Install / Upgrade Ansible galaxy deps
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - pip3 install --user --requirement requirements.txt
+      - pip3 install --requirement requirements.txt
       - ansible-galaxy install -r requirements.yaml --roles-path ~/.ansible/roles --force
       - ansible-galaxy collection install -r requirements.yaml --collections-path ~/.ansible/collections --force
-    preconditions:
-      - test -f "{{.ANSIBLE_DIR}}/requirements.txt"
-      - test -f "{{.ANSIBLE_DIR}}/requirements.yaml"
+    #preconditions:
+    #  - test -f ".{{.ANSIBLE_DIR}}/requirements.txt"
+    #  - test -f ".{{.ANSIBLE_DIR}}/requirements.yaml"
     env:
       ANSIBLE_CONFIG: "{{.ANSIBLE_DIR}}/ansible.cfg"
 

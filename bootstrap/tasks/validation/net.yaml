@@ -15,13 +15,15 @@
 
 - name: Verify cluster CIDR
   ansible.builtin.assert:
-    that: ["{{ bootstrap_cluster_cidr is ansible.utils.ipv4 }}"]
+    that:
+     - "{{ bootstrap_cluster_cidr | regex_search('^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\/[0-9]{1,2}$') is match('^.*$') or bootstrap_cluster_cidr | regex_search('^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\\/[0-9]{1,3}$') is match('^.*$') }}"
     success_msg: "Cluster CIDR {{ bootstrap_cluster_cidr }} is valid."
     fail_msg: "Cluster CIDR {{ bootstrap_cluster_cidr }} is invalid."
 
 - name: Verify service CIDR
   ansible.builtin.assert:
-    that: ["{{ bootstrap_service_cidr is ansible.utils.ipv4 }}"]
+    that:
+     - "{{ bootstrap_service_cidr | regex_search('^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\/[0-9]{1,2}$') is match('^.*$') or bootstrap_service_cidr | regex_search('^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\\/[0-9]{1,3}$') is match('^.*$') }}"
     success_msg: "Service CIDR {{ bootstrap_service_cidr }} is valid."
     fail_msg: "Service CIDR {{ bootstrap_service_cidr }} is invalid."
 
