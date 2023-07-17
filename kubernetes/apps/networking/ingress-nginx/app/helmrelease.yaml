@@ -36,8 +36,12 @@ spec:
       service:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: "ingress.${SECRET_DOMAIN}"
-          io.cilium/lb-ipam-ips: "10.46.1.9"
+          io.cilium/lb-ipam-ips: "10.46.1.9,2001:67c:1104:e04e::9"
         externalTrafficPolicy: Cluster
+        ipFamilyPolicy: "PreferDualStack"
+        ipFamilies:
+          - IPv4
+          - IPv6
       publishService:
         enabled: true
       ingressClassResource:
