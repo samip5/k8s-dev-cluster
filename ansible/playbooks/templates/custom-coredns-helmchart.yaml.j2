@@ -18,8 +18,9 @@ spec:
     k8sAppLabelOverride: kube-dns
     service:
       name: kube-dns
+      clusterIP: 10.43.0.10
       # Choose the 10th IP address from the start of the service-cidr
-      clusterIP: "{{ k3s_server['service-cidr'] | ansible.utils.nthhost(10) }}"
+      #clusterIP: "{{ k3s_server['service-cidr'] | ansible.utils.nthhost(10) }}"
     serviceAccount:
       create: true
     deployment:
