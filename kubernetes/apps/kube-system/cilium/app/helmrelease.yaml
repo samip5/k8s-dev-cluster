@@ -77,6 +77,14 @@ spec:
       mode: kubernetes
     bgpControlPlane:
       enabled: true
+    ingressController:
+      enabled: true
+      loadbalancerMode: shared
+      defaultSecretNamespace: networking
+      defaultSecretName: kubelab-fi-production-tls
+      services:
+        labels:
+          pool: dna
     k8sServiceHost: "10.0.110.5"
     k8sServicePort: 6443
     ipv4NativeRoutingCIDR: "10.42.0.0/16"
