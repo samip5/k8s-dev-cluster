@@ -1,7 +1,8 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app echoip
+  name: whoami
   namespace: default
 spec:
   interval: 15m
@@ -9,32 +10,43 @@ spec:
     spec:
       chart: app-template
       version: 1.5.1
-      interval: 15m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+  upgrade:
+    remediation:
+      retries: 5
   values:
     image:
-      repository: ghcr.io/samipsolutions/echoip
-      tag: rolling
+      repository: traefik/whoami
+      tag: v1.10.1
+
     service:
       main:
-        externalTrafficPolicy: Cluster
         ports:
           http:
-            port: 8080
+            enabled: true
+            port: 80
+
     ingress:
       main:
         enabled: true
-        ingressClassName: "cilium"
-        annotations:
-          hajimari.io/enable: "true"
-          hajimari.io/icon: hammer-wrench
+        ingressClassName: cilium
         hosts:
-          - host: &host "ip.${SECRET_DOMAIN}"
+          - host: &host who.${SECRET_DOMAIN}
             paths:
               - path: /
+
         tls:
           - hosts:
-              - *host
+              -  *host
+
+
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 50M
+      limits:
+        memory: 100M

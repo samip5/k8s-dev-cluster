@@ -5,3 +5,4 @@ resources:
   - ./namespace.yaml
   - ./cyberchef/ks.yaml
   - ./echoip/ks.yaml
+  - ./whoami.yaml
