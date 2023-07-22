@@ -78,7 +78,7 @@ spec:
     bgpControlPlane:
       enabled: true
     ingressController:
-      enabled: false
+      enabled: true
       loadbalancerMode: shared
       defaultSecretNamespace: networking
       defaultSecretName: kubelab-fi-production-tls
