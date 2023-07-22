@@ -82,6 +82,10 @@ spec:
       loadbalancerMode: shared
       defaultSecretNamespace: networking
       defaultSecretName: kubelab-fi-production-tls
+      service:
+        annotations:
+          io.cilium/lb-ipam-ips: "10.46.2.10,001:14ba:16fd:961d::e::443"
+
     k8sServiceHost: "10.0.110.5"
     k8sServicePort: 6443
     ipv4NativeRoutingCIDR: "10.42.0.0/16"
