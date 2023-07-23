@@ -18,7 +18,7 @@ spec:
     image:
       repository: ghcr.io/samipsolutions/echoip
       tag: rolling
-    command: "-H X-Envoy-External-Address -H X-Forwarded-For -p"
+    args: "-H X-Envoy-External-Address -H X-Forwarded-For -p"
     service:
       main:
         ports:
