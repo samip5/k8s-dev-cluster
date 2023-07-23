@@ -6,3 +6,4 @@ resources:
   - ./cyberchef/ks.yaml
   - ./echoip/ks.yaml
   - ./whoami.yaml
+  - ./smtp-relay/ks.yaml
