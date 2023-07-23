@@ -21,7 +21,6 @@ spec:
     command: "-H X-Envoy-External-Address -H X-Forwarded-For -p"
     service:
       main:
-        externalTrafficPolicy: Cluster
         ports:
           http:
             port: 8080
