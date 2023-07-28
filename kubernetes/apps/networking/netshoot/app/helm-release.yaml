@@ -22,6 +22,9 @@ spec:
       - /bin/sh
       - -c
       - sleep infinity
+    service:
+      main:
+        enabled: false
     securityContext:
       capabilities:
         add:
