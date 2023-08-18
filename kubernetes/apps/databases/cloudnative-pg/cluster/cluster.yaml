@@ -9,7 +9,7 @@ metadata:
     kyverno.io/ignore: "true"
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:14.9-3
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.9-5
   primaryUpdateStrategy: unsupervised
   storage:
     size: 5Gi
