@@ -31,7 +31,6 @@ spec:
     k8sAppLabelOverride: kube-dns
     service:
       name: kube-dns
-      clusterIP: "False"
     serviceAccount:
       create: true
     deployment:
