@@ -4,3 +4,4 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - ./bgp.yaml
+  - ./cilium-lb-pool.yaml
