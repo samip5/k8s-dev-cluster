@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: "quay.io/cilium/cilium"
-      tag: "v1.15.2"
+      tag: "v1.15.3"
     autoDirectNodeRoutes: true
     bpf:
       masquerade: false
