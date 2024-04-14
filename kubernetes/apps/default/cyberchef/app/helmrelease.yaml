@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: registry.samipsolutions.fi/docker/mpepping/cyberchef
-      tag: v10.15.1
+      tag: v10.17.0
     env:
       TZ: ${TZ}
     service:
