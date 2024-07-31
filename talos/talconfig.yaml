@@ -54,6 +54,26 @@ nodes:
      overlay:
        name: sbc-raspberrypi
        image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
+ - hostname: w2
+   ipAddress: 10.0.110.20
+   installDisk: /dev/sda
+   controlPlane: false
+   noSchematicValidate: true
+   schematic:
+     overlay:
+       name: sbc-raspberrypi
+       image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
+   talosImageURL: registry.skysolutions.fi/library/talos/installer
+   networkInterfaces:
+     - interface: enxe45f011b3293
+       dhcp: true
+       routes:
+         - network: "::/0"
+           gateway: "fd9d:7a72:44eb:d::1"
+           metric: 1
+       dhcpOptions:
+         routeMetric: 4000
+
 
 
 
