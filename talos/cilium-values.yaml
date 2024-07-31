@@ -1,0 +1,55 @@
+---
+autoDirectNodeRoutes: true
+cgroup:
+  automount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
+cluster:
+  id: 3
+  name: dev
+devices: enxe+
+enableRuntimeDeviceDetection: true
+endpointRoutes:
+  enabled: true
+hubble:
+  enabled: false
+ipam:
+  mode: kubernetes
+bgpControlPlane:
+  enabled: true
+ipv4NativeRoutingCIDR: "10.42.0.0/16"
+ipv6NativeRoutingCIDR: "2001:67c:1104:d000::/56"
+k8sServiceHost: 127.0.0.1
+k8sServicePort: 7445
+kubeProxyReplacement: true
+kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+loadBalancer:
+  algorithm: maglev
+  mode: dsr
+localRedirectPolicy: true
+ipv6:
+  enabled: true
+enableIPv6Masquerade: true
+operator:
+  rollOutPods: true
+  replicas: 1
+rollOutCiliumPods: true
+routingMode: native
+securityContext:
+  capabilities:
+    ciliumAgent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    cleanCiliumState:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RESOURCE

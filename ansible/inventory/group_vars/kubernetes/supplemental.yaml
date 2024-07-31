@@ -1,8 +1,0 @@
----
-timezone: "Europe/Helsinki"
-github_username: "samip5"
-coredns_addr: "False"
-kube_vip_addr: "10.0.110.5"
-cluster_cidr: "10.42.0.0/16,2001:67c:1104:d000::/56"
-service_cidr: "10.43.0.0/16,2001:67c:1104:e03e::/112"
-node_cidr: "10.0.110.0/24"

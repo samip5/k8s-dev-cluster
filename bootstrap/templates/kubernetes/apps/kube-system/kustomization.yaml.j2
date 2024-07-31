@@ -1,4 +1,3 @@
-#jinja2: trim_blocks: True, lstrip_blocks: True
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -6,9 +5,7 @@ resources:
   - ./namespace.yaml
   - ./cilium/ks.yaml
   - ./coredns/ks.yaml
-  - ./local-path-provisioner/ks.yaml
   - ./metrics-server/ks.yaml
   - ./reloader/ks.yaml
-  {% if csi_driver_nfs.enabled | default(false) %}
-  - ./csi-driver-nfs/ks.yaml
-  {% endif %}
+  - ./kubelet-csr-approver/ks.yaml
+  - ./spegel/ks.yaml
