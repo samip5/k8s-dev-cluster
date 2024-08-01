@@ -15,5 +15,5 @@ spec:
       neighbors:   # []CiliumBGPNeighbor
         - peerAddress: "10.0.110.1/32"
           peerASN: 213021
-        - peerAddress: "2001:14ba:16eb:6f6e:227c:14ff:fea2:7144/128"
+        - peerAddress: "fd9d:7a72:44eb:d::1/128"
           peerASN: 213021
