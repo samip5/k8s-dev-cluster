@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: controllers
+  namespace: argocd
+spec:
+  sourceRepos:
+    - 'https://github.com/samip5/k8s-dev-cluster.git'
+  destinations:
+    - namespace: 'argocd'
+      server: '*'
+    - namespace: 'cert-manager'
+      server: '*'
+    - namespace: 'node-feature-discovery'
+      server: '*'
+    - namespace: 'intel-device-plugins'
+      server: '*'
+    - namespace: 'kube-system'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+

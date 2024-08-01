@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: core
+  namespace: argocd
+spec:
+  sourceRepos:
+    - 'https://github.com/samip5/k8s-dev-cluster.git'
+    - 'https://argoproj.github.io/argo-helm'
+    - 'https://helm.cilium.io/*'
+  destinations:
+    - namespace: 'argocd'
+      server: '*'
+    - namespace: 'cilium-secrets'
+      server: '*'
+    - namespace: 'kube-system'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'

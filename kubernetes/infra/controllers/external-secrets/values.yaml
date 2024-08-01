@@ -1,0 +1,5 @@
+---
+installCRDs: true
+replicaCount: 1
+extraArgs:
+  loglevel: debug
