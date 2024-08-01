@@ -6,7 +6,7 @@ metadata:
 spec:
   project: app-of-apps
   source:
-    path: infra
+    path: kubernetes/infra
     repoURL: https://github.com/samip5/k8s-dev-cluster.git
     targetRevision: HEAD
   destination:
