@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  url: https://argocd.kubelab.fi
+  kustomize.buildOptions: --enable-helm
+  accounts.homepage: apiKey
+  accounts.skym: login, apiKey
