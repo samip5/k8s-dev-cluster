@@ -17,6 +17,8 @@ resources:
     cpu: 10m
     memory: 64Mi
 webhook:
+  hostNetwork: true
+  tolerations: ["operator": "Exists"]
   resources:
     limits:
       cpu: 100m
