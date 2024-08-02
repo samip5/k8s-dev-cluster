@@ -7,7 +7,6 @@ cgroup:
 cluster:
   id: 3
   name: dev
-devices: enxe+
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
