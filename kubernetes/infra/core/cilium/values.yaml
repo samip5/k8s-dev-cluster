@@ -50,7 +50,7 @@ hubble:
     enabled: true
     rollOutPods: true
     ingress:
-      enabled: true
+      enabled: false
       className: "cilium"
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
