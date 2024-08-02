@@ -1,19 +1,59 @@
-apiVersion: "cilium.io/v2alpha1"
-kind: CiliumBGPPeeringPolicy
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPClusterConfig
 metadata:
-  name: 01-bgp-peering-policy
+  name: cilium-bgp
 spec:
   nodeSelector:
     matchLabels:
       kubernetes.io/os: "linux"
-  virtualRouters:  # []CiliumBGPVirtualRouter
-    - localASN: 213021
-      exportPodCIDR: true
-      serviceSelector:
+  bgpInstances:
+    - name: cluster
+      localASN: 213021
+      peers:
+        - name: opnsense
+          peerASN: 213021
+          peerAddress: fd9d:7a72:44eb:d::1
+          peerConfigRef:
+            name: cilium-peer
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPPeerConfig
+metadata:
+  name: cilium-peer
+spec:
+  families:
+    - afi: ipv4
+      safi: unicast
+      advertisements:
+        matchLabels:
+          advertise: bgp
+    - afi: ipv6
+      safi: unicast
+      advertisements:
+        matchLabels:
+          advertise: bgp
+  gracefulRestart:
+    enabled: true
+    restartTimeSeconds: 15
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPAdvertisement
+metadata:
+  name: bgp-advertisements
+  labels:
+    advertise: bgp
+spec:
+  advertisements:
+    - advertisementType: "Service"
+      service:
+        addresses:
+          - ExternalIP
+          - LoadBalancerIP
+      selector:
         matchExpressions:
-          - {key: allservices, operator: NotIn, values: ['will-be-announced']}
-      neighbors:   # []CiliumBGPNeighbor
-        - peerAddress: "10.0.110.1/32"
-          peerASN: 213021
-        - peerAddress: "fd9d:7a72:44eb:d::1/128"
-          peerASN: 213021
+          - { key: somekey, operator: NotIn, values: ["never-used-value"] }
+    - advertisementType: "PodCIDR"
+      selector:
+        matchExpressions:
+          - { key: somekey, operator: NotIn, values: [ "never-used-value" ] }
+
