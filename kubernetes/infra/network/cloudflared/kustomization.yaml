@@ -10,6 +10,7 @@ generatorOptions:
 
 generators:
   - generator.yaml
+resources:
   - dnsendpoint.yaml
 
 
