@@ -11,6 +11,8 @@ spec:
   destinations:
     - namespace: 'k8s-gateway'
       server: '*'
+    - namespace: 'argocd'
+      server: '*'
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'

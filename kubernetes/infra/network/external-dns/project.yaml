@@ -13,6 +13,8 @@ spec:
       server: '*'
     - namespace: 'internal'
       server: '*'
+    - namespace: 'argocd'
+      server: '*'
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
