@@ -37,12 +37,12 @@ hubble:
       labelValue: "1"
       annotations: { }
   relay:
-    enabled: true
+    enabled: false
     rollOutPods: true
     prometheus:
       enabled: true
   ui:
-    enabled: true
+    enabled: false
     rollOutPods: true
     ingress:
       enabled: false
