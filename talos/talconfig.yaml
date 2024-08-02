@@ -35,7 +35,11 @@ nodes:
        image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
    talosImageURL: registry.skysolutions.fi/library/talos/installer
    networkInterfaces:
-     - interface: enxe45f011b3298
+     - interface: bond0
+       bond:
+         mode: active-backup
+         interfaces:
+           - enxe45f011b3298
        dhcp: true
        routes:
          - network: "::/0"
@@ -44,7 +48,7 @@ nodes:
        dhcpOptions:
          routeMetric: 4000
        vip:
-        ip: 10.0.110.5
+         ip: 10.0.110.5
  - hostname: w1
    ipAddress: 10.0.110.19
    installDisk: /dev/sda
@@ -65,7 +69,11 @@ nodes:
        image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
    talosImageURL: registry.skysolutions.fi/library/talos/installer
    networkInterfaces:
-     - interface: enxe45f011b3293
+     - interface: bond0
+       bond:
+         mode: active-backup
+         interfaces:
+           - enxe45f011b3293
        dhcp: true
        routes:
          - network: "::/0"
