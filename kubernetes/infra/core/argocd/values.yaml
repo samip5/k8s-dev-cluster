@@ -85,7 +85,7 @@ repoServer:
       emptyDir: {}
     - name: sops-age
       secret:
-        name: argocd-sops-age
+        secretName: argocd-sops-age
   volumeMounts:
     - mountPath: /usr/local/bin/kustomize
       name: custom-tools
