@@ -1,0 +1,44 @@
+controller:
+  extraEnvs:
+    - name: TZ
+      value: "Europe/Helsinki"
+  service:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "ingress.kubelab.fi"
+      io.cilium/lb-ipam-ips: "10.46.2.9,2001:14ba:16fd:961d::e009"
+    externalTrafficPolicy: Cluster
+    ipFamilyPolicy: "PreferDualStack"
+    ipFamilies:
+      - IPv4
+      - IPv6
+  publishService:
+    enabled: true
+  ingressClassResource:
+    default: true
+  config:
+    client-header-timeout: 120
+    client-body-buffer-size: "100M"
+    client-body-timeout: 120
+    enable-brotli: "true"
+    hsts-max-age: "31449600"
+    keep-alive: 120
+    keep-alive-requests: 10000
+    proxy-body-size: "100M"
+    ssl-protocols: "TLSv1.3 TLSv1.2"
+  metrics:
+    enabled: false
+    serviceMonitor:
+      enabled: false
+      namespace: networking
+      namespaceSelector:
+        any: true
+  extraArgs:
+    default-ssl-certificate: "networking/kubelab-fi-production-tls"
+  resources:
+    requests:
+      cpu: 10m
+      memory: 250Mi
+    limits:
+      memory: 500Mi
+  defaultBackend:
+    enabled: false

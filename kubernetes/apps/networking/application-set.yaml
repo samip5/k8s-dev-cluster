@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: networking
+  namespace: argocd
+  labels:
+    dev.stonegarden: networking
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/samip5/k8s-dev-cluster.git
+        revision: HEAD
+        directories:
+          - path: kubernetes/apps/networking/*
+  template:
+    metadata:
+      name: '{{ path.basename }}'
+      labels:
+        dev.stonegarden: networking
+    spec:
+      project: apps
+      source:
+        plugin:
+          name: kustomize-build-with-helm
+        repoURL: https://github.com/samip5/k8s-dev-cluster.git
+        targetRevision: HEAD
+        path: '{{ path }}'
+      destination:
+        name: in-cluster
+        namespace: argocd
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
