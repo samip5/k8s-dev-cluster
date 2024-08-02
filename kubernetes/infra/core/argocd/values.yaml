@@ -53,7 +53,7 @@ repoServer:
         - echo "Installing KSOPS...";
           mkdir -p /custom-tools/kustomize/plugin/viaduct.ai/v1/ksops/;
           cp ksops /custom-tools/kustomize/plugin/viaduct.ai/v1/ksops/;
-          cp ksops /custom-tools/
+          cp ksops /custom-tools/;
           mv kustomize /custom-tools/;
           echo "Done.";
       volumeMounts:
