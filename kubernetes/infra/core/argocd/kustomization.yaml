@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ns.yaml
 #  - webhook-secret.sops.yaml
-  - ingress.yaml
 
 helmCharts:
   - name: argo-cd
