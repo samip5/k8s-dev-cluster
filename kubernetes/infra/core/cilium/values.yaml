@@ -24,6 +24,8 @@ hubble:
         group: "cert-manager.io"
         kind: "ClusterIssuer"
         name: "selfsigned-issuer"
+  peerService:
+    domain: dev.local
   metrics:
     enabled:
       - dns:query
