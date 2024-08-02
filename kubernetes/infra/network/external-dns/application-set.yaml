@@ -14,7 +14,7 @@ spec:
           - path: kubernetes/infra/network/external-dns/*
   template:
     metadata:
-      name: '{{ path.basename }}'
+      name: 'external-dns-{{ path.basename }}'
       labels:
         dev.stonegarden: external-dns
     spec:
