@@ -1,7 +1,14 @@
+global:
+  domain: argocd.kubelab.fi
+  dualStack:
+    ipFamilyPolicy: PreferDualStack
+    ipFamilies: ["IPv6","IPv4"]
+
 configs:
   cm:
     create: true
     application.resourceTrackingMethod: "annotation+label"
+    kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
   cmp:
     create: true
     plugins:
@@ -9,15 +16,44 @@ configs:
         generate:
           command: [ "sh", "-c" ]
           args: [ "kustomize build --enable-helm" ]
-  params:
-    server.insecure: true
+    secret:
+      githubSecret: "$argocd-webhook-secret:webhook"
 
 crds:
   install: true
   # -- Keep CRDs on chart uninstall
   keep: false
 
+server:
+  ingress:
+    enabled: true
+    controller: generic
+    ingressClassName: cilium
+    tls: true
+  certificate:
+    enabled: true
+    issuer:
+      group: "cert-manager.io"
+      kind: "ClusterIssuer"
+      name: "letsencrypt-production"
+    privateKey:
+      algorithm: ECDSA
+
+
 repoServer:
+  initContainers:
+    - name: install-ksops
+      image: viaductoss/ksops:v4.3.2
+      command: [ "/bin/sh", "-c" ]
+      args:
+        - echo "Installing KSOPS...";
+          mv ksops /custom-tools/;
+          mv kustomize /custom-tools/;
+          echo "Done.";
+      volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+
   extraContainers:
     - name: kustomize-build-with-helm
       command:
@@ -40,3 +76,12 @@ repoServer:
         name: argocd-cmp-cm
     - name: cmp-tmp
       emptyDir: { }
+    - name: custom-tools
+      emptyDir: { }
+  volumeMounts:
+    - mountPath: /usr/local/bin/kustomize
+      name: custom-tools
+      subPath: kustomize
+    - mountPath: /usr/local/bin/ksops
+      name: custom-tools
+      subPath: ksops
