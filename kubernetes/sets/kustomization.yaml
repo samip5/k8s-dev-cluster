@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - project.yaml
   - infrastructure.yaml
-#  - applications.yaml
+  - applications.yaml
