@@ -1,0 +1,22 @@
+fullnameOverride: external-dns-cloudflare
+provider: cloudflare
+env:
+  - name: CF_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: external-dns-cloudflare-secret
+        key: api-token
+extraArgs:
+  - --annotation-filter=external-dns.alpha.kubernetes.io/target
+  - --cloudflare-proxied
+  - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+  - --crd-source-kind=DNSEndpoint
+policy: sync
+sources: ["crd", "ingress"]
+txtPrefix: k8s.
+txtOwnerId: default
+domainFilters: ["kubelab.fi"]
+serviceMonitor:
+  enabled: true
+podAnnotations:
+  secret.reloader.stakater.com/reload: external-dns-cloudflare-secret

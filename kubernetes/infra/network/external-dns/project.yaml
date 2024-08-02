@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: network
+  namespace: argocd
+spec:
+  sourceRepos:
+    - 'https://github.com/samip5/k8s-dev-cluster.git'
+    - 'https://kubernetes-sigs.github.io/external-dns/'
+    - 'https://argoproj.github.io/argo-helm'
+  destinations:
+    - namespace: 'cloudflare'
+      server: '*'
+    - namespace: 'internal'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+

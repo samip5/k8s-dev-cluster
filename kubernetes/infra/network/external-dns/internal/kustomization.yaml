@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+  - name: external-dns
+    repo: https://kubernetes-sigs.github.io/external-dns/
+    version: 1.14.5
+    releaseName: "external-dns-internal"
+    includeCRDs: true
+    namespace: network
+    valuesFile: values.yaml
