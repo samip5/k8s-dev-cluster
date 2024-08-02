@@ -13,7 +13,7 @@ endpointRoutes:
 envoy:
   enabled: false
 hubble:
-  enabled: true
+  enabled: false
   preferIpv6: true
   tls:
     insecure: true
