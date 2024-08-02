@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ns.yaml
+  - http-route.yaml
 #  - webhook-secret.sops.yaml
 
 helmCharts:
