@@ -14,6 +14,7 @@ envoy:
   enabled: false
 hubble:
   enabled: true
+  preferIpv6: true
   tls:
     insecure: true
     auto:
@@ -25,7 +26,7 @@ hubble:
         kind: "ClusterIssuer"
         name: "selfsigned-issuer"
   peerService:
-    domain: dev.local
+    clusterDomain: dev.local
   metrics:
     enabled:
       - dns:query
