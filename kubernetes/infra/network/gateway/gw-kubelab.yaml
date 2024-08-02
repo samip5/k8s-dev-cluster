@@ -1,0 +1,25 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: kubelab
+  namespace: gateway
+  annotations:
+    cert-manager.io/issuer: letsencrypt-production
+spec:
+  gatewayClassName: cilium
+  infrastructure:
+    annotations:
+      io.cilium/lb-ipam-ips: "10.46.1.9,2001:67c:1104:e04e::9"
+      external-dns.alpha.kubernetes.io/hostname: "ingress.kubelab.fi"
+  listeners:
+    - protocol: HTTPS
+      port: 443
+      name: https-gateway
+      hostname: "*.kubelab.fi"
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: cert-kubelab
+      allowedRoutes:
+        namespaces:
+          from: All

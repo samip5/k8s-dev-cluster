@@ -13,6 +13,8 @@ spec:
       server: '*'
     - namespace: 'network'
       server: '*'
+    - namespace: 'gateway'
+      server: '*'
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
