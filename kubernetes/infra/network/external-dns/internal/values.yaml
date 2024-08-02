@@ -39,7 +39,7 @@ resources:
     memory: 90M
 
 serviceMonitor:
-  enabled: true
+  enabled: false
 
 sources:
   - ingress
