@@ -52,7 +52,8 @@ repoServer:
       args:
         - echo "Installing KSOPS...";
           mkdir -p /custom-tools/kustomize/plugin/viaduct.ai/v1/ksops/;
-          mv ksops /custom-tools/kustomize/plugin/viaduct.ai/v1/ksops/;
+          cp ksops /custom-tools/kustomize/plugin/viaduct.ai/v1/ksops/;
+          cp ksops /custom-tools/
           mv kustomize /custom-tools/;
           echo "Done.";
       volumeMounts:
@@ -102,8 +103,8 @@ repoServer:
     - mountPath: /usr/local/bin/kustomize
       name: custom-tools
       subPath: kustomize
-    - mountPath: /home/argocd/.config/kustomize/plugin
+    - mountPath: /usr/local/bin/ksops
       name: custom-tools
-      subPath: kustomize/plugin
+      subPath: ksops
     - mountPath: /home/argocd/.config/sops/age
       name: sops-age
