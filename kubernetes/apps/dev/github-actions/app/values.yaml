@@ -1,4 +1,4 @@
 image:
   repository: docker.io/summerwind/actions-runner-controller
-  actionsRunnerImageRepositoryAndTag: ghcr.io/joryirving/actions-runner:2.318.0
+  actionsRunnerRepositoryAndTag: ghcr.io/joryirving/actions-runner:2.318.0
   dindSidecarRepositoryAndTag: docker.io/library/docker:dind
