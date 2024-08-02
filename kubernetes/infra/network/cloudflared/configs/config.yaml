@@ -1,0 +1,15 @@
+---
+originRequest:
+  http2Origin: true
+
+# https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/ingress
+ingress:
+  - hostname: "kubelab.fi"
+    service: https://ingress-nginx-controller.networking.svc.dev.local:443
+    originRequest:
+      originServerName: "ingress.kubelab.fi"
+  - hostname: "*.kubelab.fi"
+    service: https://ingress-nginx-controller.networking.svc.dev.local:443
+    originRequest:
+      originServerName: "ingress.kubelab.fi"
+  - service: http_status:404
