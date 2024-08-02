@@ -3,6 +3,9 @@ kind: Kustomization
 
 resources:
   - ns.yaml
+  - external-secret.yaml
+  - externalsecret-store.yaml
+  - letsencrypt-prod-issuer.yaml
 
 helmCharts:
   - name: cert-manager
