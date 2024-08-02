@@ -17,14 +17,6 @@ hubble:
   preferIpv6: true
   tls:
     insecure: true
-    auto:
-      enabled: true
-      method: certmanager
-      certValidityDuration: 1095 # 3 years
-      certManagerIssuerRef:
-        group: "cert-manager.io"
-        kind: "ClusterIssuer"
-        name: "selfsigned-issuer"
   peerService:
     clusterDomain: dev.local
   metrics:
