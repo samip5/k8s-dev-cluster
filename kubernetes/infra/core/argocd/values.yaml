@@ -14,7 +14,7 @@ configs:
       kustomize-build-with-helm:
         generate:
           command: [ "sh", "-c" ]
-          args: [ "kustomize build --enable-helm" ]
+          args: [ "kustomize build --enable-helm --enable-alpha-plugins --enable-exec" ]
     secret:
       githubSecret: "$argocd-webhook-secret:webhook"
 
