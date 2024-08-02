@@ -7,7 +7,6 @@ configs:
   cm:
     create: true
     application.resourceTrackingMethod: "annotation+label"
-    kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
   cmp:
     create: true
     plugins:
