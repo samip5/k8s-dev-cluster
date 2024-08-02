@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dev
+  namespace: argocd
+  labels:
+    dev.stonegarden: dev
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/samip5/k8s-dev-cluster.git
+        revision: HEAD
+        directories:
+          - path: kubernetes/apps/dev/*
+  template:
+    metadata:
+      name: '{{ path.basename }}'
+      labels:
+        dev.stonegarden: applications
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: dev
+      source:
+        plugin:
+          name: kustomize-build-with-helm
+        repoURL: https://github.com/samip5/k8s-dev-cluster.git
+        targetRevision: HEAD
+        path: '{{ path }}'
+      destination:
+        name: in-cluster
+        namespace: '{{ path.basename }}'
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true

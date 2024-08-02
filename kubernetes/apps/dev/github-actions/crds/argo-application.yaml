@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: github-actions-runner-crds
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: github
+  source:
+    repoURL: "https://github.com/samip5/k8s-dev-cluster.git"
+    path: kubernetes/apps/dev/github-actions/crds/github
+    targetRevision: main
+  project: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - Replace=true

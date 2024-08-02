@@ -1,0 +1,14 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: homelab
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        argocd.argoproj.io/compare-options: IgnoreExtraneous
+    spec:
+      repository: samip5/k8s-dev-cluster
