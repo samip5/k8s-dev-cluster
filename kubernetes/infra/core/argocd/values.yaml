@@ -2,7 +2,6 @@ global:
   domain: argocd.kubelab.fi
   dualStack:
     ipFamilyPolicy: PreferDualStack
-    ipFamilies: ["IPv6","IPv4"]
 
 configs:
   cm:
@@ -27,13 +26,11 @@ crds:
 server:
   ingress:
     enabled: true
-    hostname: "argocd.kubelab.fi"
     controller: generic
     ingressClassName: cilium
     tls: true
   certificate:
     enabled: true
-    domain: "argocd.kubelab.fi"
     issuer:
       group: "cert-manager.io"
       kind: "ClusterIssuer"
