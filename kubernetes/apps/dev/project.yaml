@@ -11,6 +11,8 @@ spec:
       server: '*'
     - namespace: 'dev'
       server: '*'
+    - namespace: 'github-actions'
+      server: '*'
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
