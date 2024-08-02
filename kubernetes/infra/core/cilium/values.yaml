@@ -13,7 +13,7 @@ endpointRoutes:
 envoy:
   enabled: false
 hubble:
-  enabled: false
+  enabled: true
   preferIpv6: true
   tls:
     insecure: true
@@ -37,10 +37,10 @@ hubble:
       labelValue: "1"
       annotations: { }
   relay:
-    enabled: false
+    enabled: true
     rollOutPods: true
     prometheus:
-      enabled: true
+      enabled: false
   ui:
     enabled: false
     rollOutPods: true
