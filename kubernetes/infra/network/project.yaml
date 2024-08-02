@@ -9,8 +9,8 @@ spec:
     - 'https://ori-edge.github.io/k8s_gateway/'
     - 'https://argoproj.github.io/argo-helm'
   destinations:
-    - namespace: 'k8s-gateway'
-      server: '*'
+#    - namespace: 'k8s-gateway'
+#      server: '*'
     - namespace: 'argocd'
       server: '*'
   clusterResourceWhitelist:
