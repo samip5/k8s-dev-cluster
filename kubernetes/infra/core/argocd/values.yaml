@@ -33,6 +33,7 @@ server:
     tls: true
   certificate:
     enabled: true
+    domain: "argocd.kubelab.fi"
     issuer:
       group: "cert-manager.io"
       kind: "ClusterIssuer"
