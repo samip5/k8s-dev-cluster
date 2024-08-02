@@ -19,7 +19,6 @@ configs:
 
 crds:
   install: true
-  # -- Keep CRDs on chart uninstall
   keep: false
 
 server:
@@ -38,20 +37,22 @@ server:
       algorithm: ECDSA
       size: 384
 
-
 repoServer:
   env:
     - name: XDG_CONFIG_HOME
-      value: /.config
+      value: /home/argocd/.config
     - name: SOPS_AGE_KEY_FILE
-      value: /.config/sops/age/keys.txt
+      value: /home/argocd/.config/sops/age/keys.txt
+    - name: KUSTOMIZE_PLUGIN_HOME
+      value: /home/argocd/.config/kustomize/plugin
   initContainers:
     - name: install-ksops
       image: viaductoss/ksops:v4.3.2
       command: [ "/bin/sh", "-c" ]
       args:
         - echo "Installing KSOPS...";
-          mv ksops /custom-tools/;
+          mkdir -p /custom-tools/kustomize/plugin/viaduct.ai/v1/ksops/;
+          mv ksops /custom-tools/kustomize/plugin/viaduct.ai/v1/ksops/;
           mv kustomize /custom-tools/;
           echo "Done.";
       volumeMounts:
@@ -62,9 +63,11 @@ repoServer:
     - name: kustomize-build-with-helm
       env:
         - name: XDG_CONFIG_HOME
-          value: /.config
+          value: /home/argocd/.config
         - name: SOPS_AGE_KEY_FILE
-          value: /.config/sops/age/keys.txt
+          value: /home/argocd/.config/sops/age/keys.txt
+        - name: KUSTOMIZE_PLUGIN_HOME
+          value: /home/argocd/.config/kustomize/plugin
       command:
         - argocd-cmp-server
       image: '{{ default .Values.global.image.repository .Values.repoServer.image.repository }}:{{ default (include "argo-cd.defaultTag" .) .Values.repoServer.image.tag }}'
@@ -79,10 +82,10 @@ repoServer:
           subPath: kustomize-build-with-helm.yaml
         - mountPath: /tmp
           name: cmp-tmp
-        - mountPath: /usr/local/bin/ksops
+        - mountPath: /home/argocd/.config/kustomize/plugin
           name: custom-tools
-          subPath: ksops
-        - mountPath: /.config/sops/age
+          subPath: kustomize/plugin
+        - mountPath: /home/argocd/.config/sops/age
           name: sops-age
   volumes:
     - name: cmp-kustomize-build-with-helm
@@ -99,8 +102,8 @@ repoServer:
     - mountPath: /usr/local/bin/kustomize
       name: custom-tools
       subPath: kustomize
-    - mountPath: /usr/local/bin/ksops
+    - mountPath: /home/argocd/.config/kustomize/plugin
       name: custom-tools
-      subPath: ksops
-    - mountPath: /.config/sops/age
+      subPath: kustomize/plugin
+    - mountPath: /home/argocd/.config/sops/age
       name: sops-age
