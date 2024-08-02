@@ -38,6 +38,7 @@ server:
       name: "letsencrypt-production"
     privateKey:
       algorithm: ECDSA
+      size: 384
 
 
 repoServer:
