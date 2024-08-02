@@ -14,12 +14,17 @@ spec:
           peerASN: 213021
           peerAddress: fd9d:7a72:44eb:d::1
           peerConfigRef:
-            name: cilium-peer
+            name: cilium-peer-v6
+        - name: opnsense-v4
+          peerASN: 213021
+          peerAddress: 10.0.110.1
+          peerConfigRef:
+            name: cilium-peer-v4
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumBGPPeerConfig
 metadata:
-  name: cilium-peer
+  name: cilium-peer-v4
 spec:
   families:
     - afi: ipv4
@@ -27,6 +32,16 @@ spec:
       advertisements:
         matchLabels:
           advertise: bgp
+  gracefulRestart:
+    enabled: true
+    restartTimeSeconds: 15
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPPeerConfig
+metadata:
+  name: cilium-peer-v6
+spec:
+  families:
     - afi: ipv6
       safi: unicast
       advertisements:
