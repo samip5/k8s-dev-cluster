@@ -61,8 +61,7 @@ hubble:
             - *host
           secretName: hubble-tls
 ingressController:
-  enabled: true
-  default: true
+  enabled: false
   loadbalancerMode: shared
   service:
     annotations:
