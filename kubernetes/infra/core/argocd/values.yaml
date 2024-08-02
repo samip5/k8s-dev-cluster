@@ -61,6 +61,11 @@ repoServer:
 
   extraContainers:
     - name: kustomize-build-with-helm
+      env:
+        - name: XDG_CONFIG_HOME
+          value: /.config
+        - name: SOPS_AGE_KEY_FILE
+          value: /.config/sops/age/keys.txt
       command:
         - argocd-cmp-server
       image: '{{ default .Values.global.image.repository .Values.repoServer.image.repository }}:{{ default (include "argo-cd.defaultTag" .) .Values.repoServer.image.tag }}'
@@ -75,6 +80,11 @@ repoServer:
           subPath: kustomize-build-with-helm.yaml
         - mountPath: /tmp
           name: cmp-tmp
+        - mountPath: /usr/local/bin/ksops
+          name: custom-tools
+          subPath: ksops
+        - mountPath: /.config/sops/age
+          name: sops-age
   volumes:
     - name: cmp-kustomize-build-with-helm
       configMap:
