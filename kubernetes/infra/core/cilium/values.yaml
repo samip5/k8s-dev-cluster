@@ -60,6 +60,9 @@ hubble:
         - hosts:
             - *host
           secretName: hubble-tls
+gatewayAPI:
+  enabled: true
+
 ingressController:
   enabled: false
   loadbalancerMode: shared

@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - bgp.yaml
   - cilium-lb-pool.yaml
+  - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/experimental-install.yaml
 
 helmCharts:
   - name: cilium
