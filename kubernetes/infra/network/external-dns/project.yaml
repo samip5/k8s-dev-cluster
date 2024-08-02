@@ -9,9 +9,7 @@ spec:
     - 'https://kubernetes-sigs.github.io/external-dns/'
     - 'https://argoproj.github.io/argo-helm'
   destinations:
-    - namespace: 'cloudflare'
-      server: '*'
-    - namespace: 'internal'
+    - namespace: 'network'
       server: '*'
     - namespace: 'argocd'
       server: '*'
