@@ -20,6 +20,8 @@ ingressController:
   default: true
   loadbalancerMode: shared
   service:
+    annotations:
+      io.cilium/lb-ipam-ips: 10.46.2.80
     insecureNodePort: 32434
     secureNodePort: 31247
 ipam:
