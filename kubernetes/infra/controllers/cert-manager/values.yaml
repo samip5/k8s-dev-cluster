@@ -19,6 +19,7 @@ resources:
 webhook:
   hostNetwork: true
   tolerations: ["operator": "Exists"]
+  securePort: 10260
   resources:
     limits:
       cpu: 100m
