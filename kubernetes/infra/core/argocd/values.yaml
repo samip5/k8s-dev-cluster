@@ -27,6 +27,7 @@ crds:
 server:
   ingress:
     enabled: true
+    hostname: "argocd.kubelab.fi"
     controller: generic
     ingressClassName: cilium
     tls: true
