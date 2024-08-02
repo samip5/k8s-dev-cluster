@@ -4,7 +4,7 @@ metadata:
   name: networking
   namespace: argocd
   labels:
-    dev.stonegarden: networking
+    dev.stonegarden: applications
 spec:
   generators:
     - git:
@@ -16,9 +16,9 @@ spec:
     metadata:
       name: '{{ path.basename }}'
       labels:
-        dev.stonegarden: networking
+        dev.stonegarden: applications
     spec:
-      project: apps
+      project: networking
       source:
         plugin:
           name: kustomize-build-with-helm
