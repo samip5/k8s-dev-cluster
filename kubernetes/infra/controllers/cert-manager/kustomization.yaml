@@ -6,8 +6,6 @@ resources:
   - external-secret.yaml
   - externalsecret-store.yaml
   - letsencrypt-prod-issuer.yaml
-  - internal-cluster-issuer.yaml
-  - internal-selfsigned-ca.yaml
   - internal-selfsigned-issuer.yaml
 
 helmCharts:
