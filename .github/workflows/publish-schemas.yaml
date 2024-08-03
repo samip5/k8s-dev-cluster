@@ -9,13 +9,14 @@ on:
     branches: ["main"]
     paths: [".github/workflows/publish-schemas.yaml"]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   publish-manifests:
     name: Publish Manifests
     runs-on: ["arc-cluster"]
-    permissions:
-      contents: read
-      packages: write
     steps:
       - name: Generate Token
         uses: actions/create-github-app-token@v1
