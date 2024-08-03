@@ -1,0 +1,41 @@
+controllers:
+  main:
+    pod:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: kubernetes-schemas
+    containers:
+      main:
+        image:
+          repository: ghcr.io/samip5/dev-kubernetes-schemas
+          tag: latest@sha256:1ad98b9fc73a307b547619545aa6de0679706c1cf03214146aea429b97fa14a8
+        resources:
+          requests:
+            cpu: 10m
+            memory: 50Mi
+          limits:
+            memory: 100Mi
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  main:
+    enabled: true
+    className: nginx
+    hosts:
+      - host: "schemas.kubelab.fi"
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: main
+              port: http
