@@ -22,16 +22,4 @@ controllerServiceAccount:
   namespace: github
   name: arc-gha-rs-controller
 
-valuesFrom:
-  - kind: Secret
-    name: controller-manager
-    valuesKey: github_app_id
-    targetPath: githubConfigSecret.github_app_id
-  - kind: Secret
-    name: controller-manager
-    valuesKey: github_app_installation_id
-    targetPath: githubConfigSecret.github_app_installation_id
-  - kind: Secret
-    name: controller-manager
-    valuesKey: github_app_private_key
-    targetPath: githubConfigSecret.github_app_private_key
+githubConfigSecret: controller-manager
