@@ -1,21 +1,23 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: github
-commonLabels:
-  app.kubernetes.io/part-of: gha-rs-controller
 
 resources:
-  - ns.yaml
-  - runners
+- ns.yaml
+- runners
 
 generators:
-  - generator.yaml
+- generator.yaml
 
 helmCharts:
-  - name: gha-runner-scale-set-controller
-    releaseName: arc
-    namespace: github
-    repo: oci://ghcr.io/actions/actions-runner-controller-charts/
-    version: 0.9.3
-    includeCRDs: true
-    valuesFile: values.yaml
+- includeCRDs: true
+  name: gha-runner-scale-set-controller
+  namespace: github
+  releaseName: arc
+  repo: oci://ghcr.io/actions/actions-runner-controller-charts/
+  valuesFile: values.yaml
+  version: 0.9.3
+labels:
+- includeSelectors: true
+  pairs:
+    app.kubernetes.io/part-of: gha-rs-controller
