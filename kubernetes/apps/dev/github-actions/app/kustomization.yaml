@@ -4,7 +4,7 @@ namespace: github
 
 resources:
 - ns.yaml
-- runners
+# - runners
 
 generators:
 - generator.yaml
