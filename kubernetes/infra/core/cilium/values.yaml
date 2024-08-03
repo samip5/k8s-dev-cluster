@@ -42,19 +42,16 @@ hubble:
     prometheus:
       enabled: false
   ui:
-    enabled: false
+    enabled: true
     rollOutPods: true
     ingress:
-      enabled: false
-      className: "cilium"
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
+      enabled: true
+      className: "nginx"
       hosts:
         - &host "hubble.kubelab.fi"
       tls:
         - hosts:
             - *host
-          secretName: hubble-tls
 gatewayAPI:
   enabled: true
 
