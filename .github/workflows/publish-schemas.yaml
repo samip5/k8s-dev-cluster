@@ -30,13 +30,15 @@ jobs:
         with:
           token: "${{ steps.app-token.outputs.token }}"
 
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Setup Workflow Tools
+        shell: bash
+        run: brew install kubernetes-cli
+
       - name: Setup Flux
         uses: fluxcd/flux2/action@main
-
-      - name: Setup Kube Tools
-        uses: yokawasa/action-setup-kube-tools@5fe385031665158529decddddb51d6224422836e # v0.11.1
-        with:
-          setup-tools: kubectl
 
       - name: Setup Python
         uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5.1.1
@@ -59,16 +61,17 @@ jobs:
 
       - name: Write kubeconfig
         id: kubeconfig
-        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac # v1.2
+        uses: timheuer/base64-to-file@v1
         with:
           encodedString: ${{ secrets.KUBECONFIG }}
           fileName: kubeconfig
 
-      - name: Run crd-extractor
+      - name: Download and run crd-extractor
         env:
           KUBECONFIG: ${{ steps.kubeconfig.outputs.filePath }}
         shell: bash
         run: |
+          echo $KUBECONFIG
           curl -fsSL -o $GITHUB_WORKSPACE/crd-extractor.sh \
               https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/Utilities/crd-extractor.sh
           chmod +x $GITHUB_WORKSPACE/crd-extractor.sh
@@ -108,8 +111,12 @@ jobs:
         with:
           token: "${{ steps.app-token.outputs.token }}"
 
-      - name: Setup Flux
-        uses: fluxcd/flux2/action@896e0fa46d5107a05e953dd0a5261d78a145ec8c # v2.3.0
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Setup Workflow Tools
+        shell: bash
+        run: brew install kubernetes-cli
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@49b3bc8e6bdd4a60e6116a5414239cba5943d3cf # v3.2.0
