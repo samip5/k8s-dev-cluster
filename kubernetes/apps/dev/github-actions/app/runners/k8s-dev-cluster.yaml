@@ -12,3 +12,4 @@ spec:
         argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
       repository: samip5/k8s-dev-cluster
+      image: ghcr.io/joryirving/actions-runner:2.318.0
