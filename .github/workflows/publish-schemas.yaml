@@ -43,6 +43,11 @@ jobs:
         with:
           python-version: 3.13.0-beta.4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
       - name: Login to GitHub Container Registry
         uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
         with:
@@ -59,21 +64,25 @@ jobs:
 
       - name: Write kubeconfig
         id: kubeconfig
-        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac # v1.2
+        uses: timheuer/base64-to-file@v1
         with:
           encodedString: ${{ secrets.KUBECONFIG }}
           fileName: kubeconfig
 
       - name: Run crd-extractor
+        id: extract
         env:
           KUBECONFIG: ${{ steps.kubeconfig.outputs.filePath }}
         shell: bash
         run: |
-          echo $KUBECONFIG
+          set -e
           curl -fsSL -o $GITHUB_WORKSPACE/crd-extractor.sh \
               https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/Utilities/crd-extractor.sh
           chmod +x $GITHUB_WORKSPACE/crd-extractor.sh
-          bash $GITHUB_WORKSPACE/crd-extractor.sh
+          if ! bash $GITHUB_WORKSPACE/crd-extractor.sh; then
+             echo "crd-extractor failed"
+             exit 1
+          fi
 
 
       - name: Generate tag
