@@ -13,7 +13,7 @@ helmCharts:
   - name: gha-runner-scale-set-controller
     releaseName: arc
     namespace: github
-    repo: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+    repo: oci://ghcr.io/actions/actions-runner-controller-charts/
     version: 0.9.3
     includeCRDs: true
     valuesFile: values.yaml
