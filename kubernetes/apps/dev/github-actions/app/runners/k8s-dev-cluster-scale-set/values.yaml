@@ -18,6 +18,10 @@ template:
     nodeSelector:
       kubernetes.io/arch: amd64
 
+controllerServiceAccount:
+  namespace: github
+  name: arc-gha-rs-controller
+
 valuesFrom:
   - kind: Secret
     name: controller-manager
