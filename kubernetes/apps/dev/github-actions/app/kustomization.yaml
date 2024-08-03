@@ -4,15 +4,16 @@ namespace: github
 
 resources:
   - ns.yaml
-  - runners/k8s-dev-cluster.yaml
+#  - runners/k8s-dev-cluster.yaml
 
 generators:
   - generator.yaml
 
 helmCharts:
-  - name: actions-runner-controller
+  - name: gha-runner-scale-set-controller
     releaseName: arc
     namespace: github
-    repo: https://actions-runner-controller.github.io/actions-runner-controller
-    version: 0.23.7
+    repo: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+    version: 0.9.3
+    includeCRDs: true
     valuesFile: values.yaml
