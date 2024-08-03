@@ -18,6 +18,6 @@ template:
 
 controllerServiceAccount:
   namespace: github
-  name: arc-gha-rs-controller
+  name: arc-cluster-gha-rs-manager
 
 githubConfigSecret: controller-manager
