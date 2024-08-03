@@ -5,4 +5,5 @@ resources:
   - sa.yaml
   - role.yaml
   - rolebinding.yaml
+  - token.yaml
 
