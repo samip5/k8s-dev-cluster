@@ -17,7 +17,3 @@ helmCharts:
   repo: oci://ghcr.io/actions/actions-runner-controller-charts/
   valuesFile: values.yaml
   version: 0.9.3
-labels:
-- includeSelectors: true
-  pairs:
-    app.kubernetes.io/part-of: gha-rs-controller
