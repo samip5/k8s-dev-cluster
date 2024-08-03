@@ -15,8 +15,6 @@ template:
       - name: runner
         image: ghcr.io/joryirving/actions-runner:2.318.0
         command: [ "/home/runner/run.sh" ]
-    nodeSelector:
-      kubernetes.io/arch: amd64
 
 controllerServiceAccount:
   namespace: github
