@@ -4,5 +4,5 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true
 
-resources: []
-#  - app
+resources:
+  - app
