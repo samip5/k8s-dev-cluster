@@ -1,0 +1,33 @@
+runnerScaleSetName: arc-cluster
+runnerGroup: default
+
+githubConfigUrl: https://github.com/samip5/k8s-dev-cluster
+
+minRunners: 1
+maxRunners: 4
+
+containerMode:
+  type: "dind"
+
+template:
+  spec:
+    containers:
+      - name: runner
+        image: ghcr.io/joryirving/actions-runner:2.318.0
+        command: [ "/home/runner/run.sh" ]
+    nodeSelector:
+      kubernetes.io/arch: amd64
+
+valuesFrom:
+  - kind: Secret
+    name: controller-manager
+    valuesKey: github_app_id
+    targetPath: githubConfigSecret.github_app_id
+  - kind: Secret
+    name: controller-manager
+    valuesKey: github_app_installation_id
+    targetPath: githubConfigSecret.github_app_installation_id
+  - kind: Secret
+    name: controller-manager
+    valuesKey: github_app_private_key
+    targetPath: githubConfigSecret.github_app_private_key
