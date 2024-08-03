@@ -10,9 +10,6 @@
     "github>samip5/k3s-dev-cluster//.github/renovate/autoMerge.json5",
     "github>samip5/k3s-dev-cluster//.github/renovate-bot.json5"
   ],
-  "platform": "github",
-  "onboarding": false,
-  "requireConfig": "optional",
   "commitBodyTable": true,
   "timezone": "Europe/Helsinki",
   "semanticCommits": "enabled",

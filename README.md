@@ -3,6 +3,44 @@
 This is the cluster where I test things.
 
 
+## Cluster bootstrap using ArgoCD
+
+Cilium install aka CNI
+
+```shell
+kubectl kustomize --enable-helm kubernetes/infra/core/cilium | kubectl apply -f -
+```
+
+External Secrets Operator and token secret to go along with it
+```shell
+sops -d kubernetes/infra/controllers/external-secrets/secret.sops.yaml | kubectl apply -f -
+kubectl kustomize --enable-helm kubernetes/infra/controllers/external-secrets | kubectl apply -f -
+```
+
+cert-manager
+```shell
+kubectl kustomize --enable-helm kubernetes/infra/controllers/cert-manager| kubectl apply -f -
+```
+
+Argo CD
+```shell
+kubectl kustomize --enable-helm kubernetes/infra/core/argocd | kubectl apply -f -
+```
+
+Get Argo CD admin secret
+
+```shell
+kubectl -n argocd get secret argocd-initial-admin-secret -ojson | jq -r ' .data.password | @base64d'
+```
+
+Apply app-of-apps
+
+```shell
+kubectl apply -k kubernetes/sets
+```
+
+
+
 ## 💻 Nodes
 | Node                   | Hostname | RAM | Storage   | Function    | Operating System    |
 |------------------------|----------|-----|-----------|-------------|---------------------|

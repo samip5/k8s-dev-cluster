@@ -11,8 +11,18 @@ devices: enxe+
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
+envoy:
+  enabled: false
 hubble:
   enabled: false
+ingressController:
+  enabled: true
+  default: true
+  loadbalancerMode: shared
+  service:
+    insecureNodePort: 32434
+    secureNodePort: 31247
+
 ipam:
   mode: kubernetes
 bgpControlPlane:
