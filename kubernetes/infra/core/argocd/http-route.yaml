@@ -1,12 +1,13 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: http-route-euclid
+  name: http-route-argocd
   namespace: argocd
 spec:
   parentRefs:
     - name: kubelab
       namespace: gateway
+      sectionName: https
   hostnames:
     - "argocd.kubelab.fi"
   rules:

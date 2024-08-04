@@ -14,7 +14,7 @@ spec:
   listeners:
     - protocol: HTTPS
       port: 443
-      name: https-gateway
+      name: https
       hostname: "*.kubelab.fi"
       tls:
         certificateRefs:
