@@ -4,6 +4,7 @@ namespace: networking
 
 resources:
   - certificates/prod.yaml
+  - certificates/allow-ref.yaml
 
 helmCharts:
   - name: ingress-nginx
