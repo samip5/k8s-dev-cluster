@@ -11,7 +11,7 @@ enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
 envoy:
-  enabled: false
+  enabled: true
 hubble:
   enabled: true
   preferIpv6: true
@@ -58,6 +58,9 @@ gatewayAPI:
 bpf:
   masquerade: true
   tproxy: true
+  # https://github.com/cilium/cilium/issues/31653
+  hostLegacyRouting: true
+
 
 l7Proxy: true
 
