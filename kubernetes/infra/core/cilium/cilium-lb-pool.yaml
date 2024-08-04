@@ -6,4 +6,4 @@ metadata:
 spec:
   blocks:
     - cidr: "10.46.2.0/24"
-    - cidr: "2001:14ba:16fd:961d::e:0/112"
+    - cidr: "2001:14ba:7429:a400::10d:0/112"

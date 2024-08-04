@@ -57,7 +57,7 @@ gatewayAPI:
 
 bpf:
   masquerade: true
-  tproxy: true
+  #tproxy: true
   # https://github.com/cilium/cilium/issues/31653
   hostLegacyRouting: true
 
