@@ -19,7 +19,8 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-            name: cert-kubelab
+            name: kubelab-fi-production-tls
+            namespace: networking
       allowedRoutes:
         namespaces:
           from: All
