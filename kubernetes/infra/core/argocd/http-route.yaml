@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: kubelab
       namespace: gateway
-      sectionName: http
+      sectionName: https
   hostnames:
     - "argocd.kubelab.fi"
   rules:
@@ -17,4 +17,4 @@ spec:
             value: /
       backendRefs:
         - name: argocd-server
-          port: 80
+          port: 443
