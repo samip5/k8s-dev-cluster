@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: kubelab
       namespace: gateway
-      sectionName: https
+      sectionName: http
   hostnames:
     - "argocd.kubelab.fi"
   rules:
