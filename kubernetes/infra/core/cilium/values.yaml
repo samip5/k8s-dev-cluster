@@ -62,7 +62,7 @@ bpf:
 l7Proxy: true
 
 ingressController:
-  enabled: false
+  enabled: true
   loadbalancerMode: shared
   service:
     annotations:
