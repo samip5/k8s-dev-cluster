@@ -18,10 +18,10 @@ additionalApiServerCertSans:
   - cluster.local
 clusterPodNets:
   - 10.42.0.0/16
-  - 2001:67c:1104:d000::/56
+  - 2001:14ba:7429:a4f0::/60
 clusterSvcNets:
   - 10.43.0.0/16
-  - 2001:67c:1104:e03e::/112
+  - 2001:14ba:7429:a400::10d:0/112
 nodes:
  - hostname: m1
    ipAddress: 10.0.110.18

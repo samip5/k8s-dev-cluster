@@ -77,7 +77,7 @@ ipam:
 bgpControlPlane:
   enabled: true
 ipv4NativeRoutingCIDR: "10.42.0.0/16"
-ipv6NativeRoutingCIDR: "2001:67c:1104:d000::/56"
+ipv6NativeRoutingCIDR: "2001:14ba:7429:a4f0::/60"
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
 kubeProxyReplacement: true
