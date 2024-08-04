@@ -60,6 +60,10 @@ metadata:
 spec:
   advertisements:
     - advertisementType: "Service"
+      service:
+        addresses:
+          - ExternalIP
+          - LoadBalancerIP
       selector:
         matchExpressions:
           - { key: somekey, operator: NotIn, values: ["never-used-value"] }
