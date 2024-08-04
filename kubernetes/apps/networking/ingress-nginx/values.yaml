@@ -5,7 +5,7 @@ controller:
   service:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: "ingress.kubelab.fi"
-      io.cilium/lb-ipam-ips: "10.46.2.9,2001:14ba:16fd:961d::e009"
+      io.cilium/lb-ipam-ips: "10.46.2.9,2001:14ba:7429:a400::10d:9"
     externalTrafficPolicy: Cluster
     ipFamilyPolicy: "PreferDualStack"
     ipFamilies:

@@ -8,6 +8,7 @@ replicaCount: 1
 
 service:
   name: kube-dns
+  ipFamilyPolicy: RequireDualStack
   clusterIP: 10.43.0.10
   annotations:
     fix.coredns.template: "fnord"
