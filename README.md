@@ -24,6 +24,7 @@ kubectl kustomize --enable-helm kubernetes/infra/controllers/cert-manager| kubec
 
 Argo CD
 ```shell
+sops -d kubernetes/infra/core/argocd/sops-secret.sops.yaml | kubectl apply -f -
 kubectl kustomize --enable-helm kubernetes/infra/core/argocd | kubectl apply -f -
 ```
 
