@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tor-controller
+  namespace: argocd
+spec:
+  destination:
+    namespace: tor
+    server: https://kubernetes.default.svc
+  project: controllers
+  source:
+    chart: tor-controller
+    repoURL: https://bugfest.github.io/tor-controller
+    targetRevision: 0.1.15
+    helm:
+      valuesObject:
+        fullnameOverride: tor
+        namespaced: true
+        resources:
+          limits:
+            cpu: 250m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
