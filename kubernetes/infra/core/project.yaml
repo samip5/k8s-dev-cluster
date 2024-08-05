@@ -8,6 +8,7 @@ spec:
     - 'https://github.com/samip5/k8s-dev-cluster.git'
     - 'https://argoproj.github.io/argo-helm'
     - 'https://helm.cilium.io/*'
+    - 'https://emberstack.github.io/helm-charts'
   destinations:
     - namespace: 'argocd'
       server: '*'
