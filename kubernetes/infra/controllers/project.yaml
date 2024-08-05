@@ -13,6 +13,8 @@ spec:
       server: '*'
     - namespace: 'kube-system'
       server: '*'
+    - namespace: 'tor'
+      server: '*'
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
