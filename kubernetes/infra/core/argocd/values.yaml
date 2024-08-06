@@ -24,7 +24,7 @@ crds:
 
 server:
   ingress:
-    enabled: false
+    enabled: true
     controller: generic
     ingressClassName: cilium
     tls: true
