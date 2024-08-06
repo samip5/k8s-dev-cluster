@@ -1,9 +1,0 @@
----
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - ./namespace.yaml
-  - ./cyberchef/ks.yaml
-  - ./echoip/ks.yaml
-  - ./whoami.yaml
-  - ./smtp-relay/ks.yaml
