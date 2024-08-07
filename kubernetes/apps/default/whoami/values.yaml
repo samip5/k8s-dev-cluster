@@ -1,0 +1,52 @@
+controllers:
+  whoami:
+    pod:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: whoami
+    containers:
+      app:
+        image:
+          repository: registry.skysolutions.fi/docker.io/traefik/whoami
+          tag: v1.10.2
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+        resources:
+          requests:
+            cpu: 10m
+            memory: 16Mi
+          limits:
+            cpu: 100m
+            memory: 32Mi
+
+service:
+  main:
+    controller: whoami
+    ipFamilyPolicy: PreferDualStack
+    ports:
+      http:
+        port: 80
+
+ingress:
+  main:
+    enabled: true
+    className: nginx
+    annotations:
+      external-dns.alpha.kubernetes.io/target: ingress.kubelab.fi
+      hajimari.io/appName: "Who Am I?"
+      hajimari.io/icon: mdi:id-card-outline
+    hosts:
+      - host: "whoami.kubelab.fi"
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http

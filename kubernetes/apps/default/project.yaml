@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: default
+  namespace: argocd
+spec:
+  sourceRepos:
+    - 'https://github.com/samip5/k8s-dev-cluster.git'
+  destinations:
+    - namespace: 'argocd'
+      server: '*'
+    - namespace: 'default'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
