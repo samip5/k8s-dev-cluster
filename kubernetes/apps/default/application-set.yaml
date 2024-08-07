@@ -11,7 +11,7 @@ spec:
         repoURL: https://github.com/samip5/k8s-dev-cluster.git
         revision: HEAD
         directories:
-          - path: kubernetes/apps/dev/*
+          - path: kubernetes/apps/default/*
   template:
     metadata:
       name: '{{ path.basename }}'
