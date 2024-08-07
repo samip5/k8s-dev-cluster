@@ -13,6 +13,8 @@ controllers:
         image:
           repository: registry.skysolutions.fi/docker.io/traefik/whoami
           tag: v1.10.2
+        env:
+          WHOAMI_PORT_NUMBER: 80
         probes:
           liveness:
             enabled: true
