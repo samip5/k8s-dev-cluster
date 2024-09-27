@@ -12,7 +12,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/samip5/dev-kubernetes-schemas
-          tag: latest@sha256:bee7060ca735b9518863a62f606acc366eba12e9a85a7f7fec56ac6daaa2e872
+          tag: latest@sha256:752fc9e83f96d5133d5b46a6b0c335531d9181f88621184ec7e2b86df5511cc7
         resources:
           requests:
             cpu: 10m
