@@ -6,7 +6,7 @@ namespace: networking
 helmCharts:
   - name: app-template
     repo: oci://ghcr.io/bjw-s/helm/
-    version: 3.4.0
+    version: 3.5.0
     releaseName: "kubernetes-schemas"
     namespace: networking
     valuesFile: values.yaml
