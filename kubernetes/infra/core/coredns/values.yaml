@@ -1,6 +1,6 @@
 image:
   repository: registry.skysolutions.fi/docker.io/coredns/coredns
-  tag: 1.11.3
+  tag: 1.11.4
 
 fullnameOverride: coredns
 
