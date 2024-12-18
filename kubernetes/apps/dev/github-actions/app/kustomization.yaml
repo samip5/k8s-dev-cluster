@@ -16,4 +16,4 @@ helmCharts:
   releaseName: arc
   repo: oci://ghcr.io/actions/actions-runner-controller-charts/
   valuesFile: values.yaml
-  version: 0.10.0
+  version: 0.10.1
