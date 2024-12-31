@@ -11,7 +11,7 @@ spec:
   source:
     chart: tor-controller
     repoURL: https://bugfest.github.io/tor-controller
-    targetRevision: 0.1.15
+    targetRevision: 0.1.17
     helm:
       valuesObject:
         fullnameOverride: tor
