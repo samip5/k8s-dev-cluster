@@ -9,7 +9,7 @@ resources:
 helmCharts:
   - name: app-template
     repo: oci://ghcr.io/bjw-s/helm/
-    version: 3.6.0
+    version: 3.6.1
     releaseName: "whoami"
     namespace: default
     valuesFile: values.yaml
