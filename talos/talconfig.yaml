@@ -1,13 +1,13 @@
 clusterName: dev
 # renovate: depName=ghcr.io/siderolabs/installer datasource=docker
-talosVersion: v1.8.0-alpha.1
+talosVersion: v1.9.2
 # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
 kubernetesVersion: v1.30.2
 
 cniConfig:
    name: none
 
-endpoint: https://10.0.110.5:6443
+endpoint: https://10.0.110.18:6443
 domain: dev.local
 allowSchedulingOnMasters: true
 additionalMachineCertSans:
@@ -28,12 +28,10 @@ nodes:
    installDisk: /dev/sda
    disableSearchDomain: true
    controlPlane: true
-   noSchematicValidate: true
    schematic:
      overlay:
-       name: sbc-raspberrypi
-       image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
-   talosImageURL: registry.skysolutions.fi/library/talos/installer
+       name: rpi_generic
+       image: siderolabs/sbc-raspberrypi
    networkInterfaces:
      - interface: bond0
        bond:
@@ -49,18 +47,32 @@ nodes:
          routeMetric: 4000
        vip:
          ip: 10.0.110.5
- - hostname: w1
-   ipAddress: 10.0.110.19
-   installDisk: /dev/sda
-   controlPlane: false
-   noSchematicValidate: true
-   schematic:
-     overlay:
-       name: sbc-raspberrypi
-       image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
- - hostname: w2
-   ipAddress: 10.0.110.20
-   installDisk: /dev/sda
+# - hostname: w1
+#   ipAddress: 10.0.110.27
+#   installDisk: /dev/mmcblk1
+#   controlPlane: false
+#   noSchematicValidate: true
+#   schematic:
+#     overlay:
+#       name: sbc-raspberrypi
+#       image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
+#   talosImageURL: registry.skysolutions.fi/library/talos/installer
+#   networkInterfaces:
+#     - interface: bond0
+#       bond:
+#         mode: active-backup
+#         interfaces:
+#           - enxe45f012e06ac
+#       dhcp: true
+#       routes:
+#         - network: "::/0"
+#           gateway: "fd9d:7a72:44eb:d::1"
+#           metric: 1
+#       dhcpOptions:
+#         routeMetric: 4000
+ - hostname: pi5-1
+   ipAddress: 10.0.110.22
+   installDisk: /dev/nvme0n1
    controlPlane: false
    noSchematicValidate: true
    schematic:
@@ -69,16 +81,8 @@ nodes:
        image: registry.skysolutions.fi/library/sbc-raspberrypi:alpha.1-1@sha256:f5734630fbae0647daf6e490ff91cd5f95220c3fc34e64364b2f245cde502a43
    talosImageURL: registry.skysolutions.fi/library/talos/installer
    networkInterfaces:
-     - interface: bond0
-       bond:
-         mode: active-backup
-         interfaces:
-           - enxe45f011b3293
+     - interface: end0
        dhcp: true
-       routes:
-         - network: "::/0"
-           gateway: "fd9d:7a72:44eb:d::1"
-           metric: 1
        dhcpOptions:
          routeMetric: 4000
 
