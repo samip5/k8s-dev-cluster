@@ -7,12 +7,13 @@ kubernetesVersion: v1.30.2
 cniConfig:
    name: none
 
-endpoint: https://10.0.110.18:6443
+endpoint: https://10.0.110.5:6443
 domain: dev.local
 allowSchedulingOnMasters: true
 additionalMachineCertSans:
   - "127.0.0.1"
   - "10.0.110.18"
+  - "10.0.110.5"
 additionalApiServerCertSans:
   - dev.local
   - cluster.local
@@ -24,8 +25,8 @@ clusterSvcNets:
   - 2001:14ba:7429:a400::10d:0/112
 nodes:
  - hostname: m1
-   ipAddress: 10.0.110.18
-   installDisk: /dev/sda
+   ipAddress: 10.0.110.21
+   installDisk: /dev/nvme0n1
    disableSearchDomain: true
    controlPlane: true
    schematic:
@@ -37,12 +38,12 @@ nodes:
        bond:
          mode: active-backup
          interfaces:
-           - enxe45f011b3298
+           - end0
        dhcp: true
-       routes:
-         - network: "::/0"
-           gateway: "fd9d:7a72:44eb:d::1"
-           metric: 1
+#       routes:
+#         - network: "::/0"
+#           gateway: "fd9d:7a72:44eb:d::1"
+#           metric: 1
        dhcpOptions:
          routeMetric: 4000
        vip:
