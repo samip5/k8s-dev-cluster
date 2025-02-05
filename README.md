@@ -11,6 +11,11 @@ Cilium install aka CNI
 kubectl kustomize --enable-helm kubernetes/infra/core/cilium | kubectl apply -f -
 ```
 
+CoreDNS
+```shell
+kubectl kustomize --enable-helm kubernetes/infra/core/coredns | kubectl apply -f -
+```
+
 External Secrets Operator and token secret to go along with it
 ```shell
 sops -d kubernetes/infra/controllers/external-secrets/secret.sops.yaml | kubectl apply -f -
@@ -43,7 +48,7 @@ kubectl apply -k kubernetes/sets
 
 
 ## 💻 Nodes
-| Node                   | Hostname | RAM | Storage   | Function    | Operating System    |
-|------------------------|----------|-----|-----------|-------------|---------------------|
-| Raspberry Pi 4 Model B | m1       | 8GB | 128GB SSD | Kube Master | Talos 1.8.0-alpha.1 |
-| Raspberry Pi 4 Model B | w2       | 8GB | 256GB SSD | Kube Worker | Talos 1.8.0-alpha.1 |
+| Node                          | Hostname | RAM | Storage        | Function    | Operating System |
+|-------------------------------|----------|-----|----------------|-------------|------------------|
+| Raspberry Pi Compute Module 4 | m1       | 8GB | 256GB NVMe SSD | Kube Master | Talos            |
+| Raspberry Pi 4 Model B        | w1       | 8GB | 256GB SSD      | Kube Worker | Talos            |
