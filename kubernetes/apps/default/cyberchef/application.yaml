@@ -1,0 +1,64 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cyberchef
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: app-template
+    repoURL: https://bjw-s.github.io/helm-charts
+    targetRevision: 3.7.1
+    helm:
+      releaseName: cyberchef
+      valuesObject:
+        controllers:
+          cyberchef:
+            containers:
+              app:
+                image:
+                  repository: ghcr.io/vaskozl/cyberchef-web
+                  tag: 10.19.4
+                resources:
+                  limits:
+                    memory: 50Mi
+                  requests:
+                    cpu: 5m
+                    memory: 5Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                      - ALL
+                  readOnlyRootFilesystem: true
+          defaultPodOptions:
+            securityContext:
+              fsGroup: 568
+              runAsGroup: 568
+              runAsNonRoot: true
+              runAsUser: 568
+              seccompProfile:
+                type: RuntimeDefault
+          ingress:
+            app:
+              hosts:
+                - host: chef.kubelab.fi
+                  paths:
+                    - path: /
+                      service:
+                        identifier: app
+                        port: http
+          service:
+            app:
+              controller: cyberchef
+              ports:
+                http:
+                  port: 8080
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
