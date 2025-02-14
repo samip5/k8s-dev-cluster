@@ -22,21 +22,21 @@ crds:
   install: true
   keep: false
 
-server:
-  ingress:
-    enabled: true
-    controller: generic
-    ingressClassName: nginx
-    tls: true
-  certificate:
-    enabled: true
-    issuer:
-      group: "cert-manager.io"
-      kind: "ClusterIssuer"
-      name: "letsencrypt-production"
-    privateKey:
-      algorithm: ECDSA
-      size: 384
+#server:
+#  ingress:
+#    enabled: true
+#    controller: generic
+#    ingressClassName: nginx
+#    tls: true
+#  certificate:
+#    enabled: true
+#    issuer:
+#      group: "cert-manager.io"
+#      kind: "ClusterIssuer"
+#      name: "letsencrypt-production"
+#    privateKey:
+#      algorithm: ECDSA
+#      size: 384
 
 repoServer:
   env:
