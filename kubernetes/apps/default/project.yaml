@@ -6,6 +6,7 @@ metadata:
 spec:
   sourceRepos:
     - 'https://github.com/samip5/k8s-dev-cluster.git'
+    - 'https://bjw-s.github.io/helm-charts'
   destinations:
     - namespace: 'argocd'
       server: '*'
