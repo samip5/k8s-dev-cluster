@@ -31,9 +31,9 @@ spec:
         name: in-cluster
         namespace: default
       syncPolicy:
-        automated:
-          selfHeal: true
-          prune: true
+#        automated:
+#          selfHeal: true
+#          prune: true
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
