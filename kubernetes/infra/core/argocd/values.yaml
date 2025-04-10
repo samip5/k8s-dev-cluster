@@ -45,7 +45,7 @@ repoServer:
       value: /home/argocd/.config/sops/age/keys.txt
   initContainers:
     - name: install-ksops
-      image: viaductoss/ksops:v4.3.2
+      image: viaductoss/ksops:v4.3.3
       command: [ "/bin/sh", "-c" ]
       args:
         - echo "Installing KSOPS...";
