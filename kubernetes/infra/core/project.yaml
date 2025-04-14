@@ -17,7 +17,7 @@ spec:
       server: '*'
     - namespace: 'kube-system'
       server: '*'
-    - namespace: '1passwordconnect'
+    - namespace: '1pass'
       server: '*'
   clusterResourceWhitelist:
     - group: '*'
