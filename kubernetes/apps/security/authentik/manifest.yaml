@@ -5,8 +5,8 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    name: in-cluster
     namespace: security
+    server: https://kubernetes.default.svc
   project: security
   source:
     chart: authentik
