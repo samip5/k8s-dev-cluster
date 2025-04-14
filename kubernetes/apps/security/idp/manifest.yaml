@@ -30,6 +30,11 @@ spec:
             registry: docker.io
             repository: bitnami/postgresql
             tag: 17.4.0-debian-12-r15
+          password:
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: authentik-postgresql
         global:
           env:
             - name: AUTHENTIK_SECRET_KEY
@@ -37,11 +42,6 @@ spec:
                 secretKeyRef:
                   key: secret_key
                   name: authentik-configsecrets
-            - name: AUTHENTIK_POSTGRESQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: password
-                  name: authentik-postgresql
       syncPolicy:
         automated:
           allowEmpty: true
