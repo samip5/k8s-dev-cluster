@@ -22,8 +22,11 @@ spec:
                   key: secret_key
                   name: authentik-configsecrets
         server:
+          replicas: 1
           ingress:
             enabled: false
+        worker:
+          replicas: 0
         authentik:
           log_level: debug
           error_reporting:
@@ -50,7 +53,6 @@ spec:
             tag: 17.4.0-debian-12-r15
       syncPolicy:
         automated:
-          allowEmpty: true
           prune: true
           selfHeal: true
 
