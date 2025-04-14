@@ -19,6 +19,10 @@ spec:
             enabled: false
         authentik:
           log_level: debug
+          error_reporting:
+            enabled: false
+          postgresql:
+            enabled: true
         redis:
           enabled: true
           master:
