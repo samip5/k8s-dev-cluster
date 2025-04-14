@@ -1,0 +1,94 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: local-path
+  namespace: argocd
+spec:
+  destination:
+    namespace: storage
+    server: https://kubernetes.default.svc
+  project: storage
+  source:
+    chart: democratic-csi
+    repoURL: https://democratic-csi.github.io/charts/
+    targetRevision: 0.15.0
+  helm:
+    valuesObject:
+      csiDriver:
+        name: "org.democratic-csi.local-hostpath"
+        attachRequired: false
+        storageCapacity: true # With storage capacity tracking, the scheduler filters out nodes which do not have enough capacity.
+        fsGroupPolicy: File # fsGroupChangePolicy
+
+      storageClasses:
+        - name: local-hostpath
+          defaultClass: false
+          reclaimPolicy: Delete
+          volumeBindingMode: Immediate
+          # distributed support is not yet ready for expansion
+          allowVolumeExpansion: false
+
+      volumeSnapshotClasses:
+        - name: local-hostpath
+          deletionPolicy: Delete
+          parameters:
+            dummy: {}
+
+      controller:
+        enabled: true
+        strategy: node
+        externalAttacher:
+          enabled: false
+        externalProvisioner:
+          enabled: true
+          image:
+            registry: registry.k8s.io/sig-storage/csi-provisioner
+            tag: v5.1.0
+          extraArgs:
+            - --leader-election=false
+            - --node-deployment=true
+            - --node-deployment-immediate-binding=true
+            - --feature-gates=Topology=true
+            - --strict-topology=true
+            - --enable-capacity=true
+            - --capacity-ownerref-level=1
+        externalResizer:
+          enabled: false
+        externalSnapshotter:
+          enabled: true
+          image:
+            registry: registry.k8s.io/sig-storage/csi-snapshotter
+            tag: v8.2.1
+          extraArgs:
+            - --leader-election=false
+            - --node-deployment=true
+
+      node:
+        driver:
+          image:
+            registry: democraticcsi/democratic-csi
+            tag: v1.9.3
+          extraVolumeMounts:
+            - name: local-hostpath
+              mountPath: /var/mnt/csi-local-path
+              mountPropagation: Bidirectional
+
+        extraVolumes:
+          - name: local-hostpath
+            hostPath:
+              path: /var/mnt/csi-local-path
+              type: DirectoryOrCreate
+      csiProxy:
+        image:
+          registry: ghcr.io/democratic-csi/csi-grpc-proxy
+          tag: v0.5.6
+
+      driver:
+        config:
+          driver: local-hostpath
+          local-hostpath:
+            shareBasePath: "/var/mnt/csi-local-path"
+            controllerBasePath: "/var/mnt/csi-local-path"
+            dirPermissionsMode: "0770"
+            dirPermissionsUser: 0
+            dirPermissionsGroup: 0

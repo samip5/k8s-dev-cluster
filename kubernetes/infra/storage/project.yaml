@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: storage
+  namespace: argocd
+spec:
+  sourceRepos:
+    - 'https://github.com/samip5/k8s-dev-cluster.git'
+    - 'https://democratic-csi.github.io/charts/'
+  destinations:
+    - namespace: 'argocd'
+      server: '*'
+    - namespace: 'storage'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
