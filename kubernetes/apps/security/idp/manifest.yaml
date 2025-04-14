@@ -14,6 +14,13 @@ spec:
     targetRevision: 2025.2.4
     helm:
       valuesObject:
+        global:
+          env:
+            - name: AUTHENTIK_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: secret_key
+                  name: authentik-configsecrets
         server:
           ingress:
             enabled: false
@@ -23,6 +30,13 @@ spec:
             enabled: false
           postgresql:
             enabled: true
+            name: "authentik"
+            user: "authentik"
+            password:
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: authentik-postgresql
         redis:
           enabled: true
           master:
@@ -34,18 +48,6 @@ spec:
             registry: docker.io
             repository: bitnami/postgresql
             tag: 17.4.0-debian-12-r15
-          password:
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: authentik-postgresql
-        global:
-          env:
-            - name: AUTHENTIK_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: secret_key
-                  name: authentik-configsecrets
       syncPolicy:
         automated:
           allowEmpty: true
