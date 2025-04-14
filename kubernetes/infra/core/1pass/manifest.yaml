@@ -24,7 +24,7 @@ spec:
   data:
     - secretKey: json
       remoteRef:
-        key: 1passwordconnect
+        key: 1passwordconnect-dev
         property: 1password-credentials.json
 ---
 apiVersion: argoproj.io/v1alpha1
