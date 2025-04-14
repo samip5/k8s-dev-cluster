@@ -21,6 +21,11 @@ spec:
                 secretKeyRef:
                   key: secret_key
                   name: authentik-configsecrets
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: authentik-postgresql
         server:
           replicas: 1
           ingress:
@@ -35,11 +40,6 @@ spec:
             enabled: true
             name: "authentik"
             user: "authentik"
-            password:
-              valueFrom:
-                secretKeyRef:
-                  key: password
-                  name: authentik-postgresql
         redis:
           enabled: true
           master:
