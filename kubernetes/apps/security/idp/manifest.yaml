@@ -37,6 +37,11 @@ spec:
                 secretKeyRef:
                   key: secret_key
                   name: authentik-configsecrets
+            - name: AUTHENTIK_POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: authentik-postgresql
       syncPolicy:
         automated:
           allowEmpty: true
