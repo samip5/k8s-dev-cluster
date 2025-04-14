@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cnpg-operator
+  namespace: argocd
+spec:
+  destination:
+    namespace: databases
+    server: https://kubernetes.default.svc
+  project: databases
+  source:
+    chart: cloudnative-pg
+    repoURL: https://cloudnative-pg.github.io/charts/
+    targetRevision: 0.23.2
+    helm:
+      valuesObject:
+        crds:
+          create: true

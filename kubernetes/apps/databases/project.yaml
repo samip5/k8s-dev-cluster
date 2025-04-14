@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: databases
+  namespace: argocd
+spec:
+  sourceRepos:
+    - 'https://github.com/samip5/k8s-dev-cluster.git'
+    - 'https://cloudnative-pg.github.io/charts/'
+  destinations:
+    - namespace: 'argocd'
+      server: '*'
+    - namespace: 'databases'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
