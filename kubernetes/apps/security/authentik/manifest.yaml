@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: authentik
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: security
+  project: security
+  source:
+    chart: authentik
+    repoURL: https://charts.goauthentik.io
+    targetRevision: 2025.2.4
+    helm:
+      valuesObject:
+        server:
+          ingress:
+            enabled: false
+        authentik:
+          log_level: debug
+        redis:
+          enabled: true
+          master:
+            persistence:
+              enabled: false
+        global:
+          env:
+            - name: AUTHENTIK_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: secret_key
+                  name: authentik-configsecrets
+      syncPolicy:
+        automated:
+          allowEmpty: true
+          prune: true
+          selfHeal: true
+
