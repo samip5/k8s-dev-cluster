@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: cnpg-operator
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
     namespace: databases
