@@ -9,12 +9,15 @@ spec:
     - 'https://argoproj.github.io/argo-helm'
     - 'https://helm.cilium.io/*'
     - 'https://emberstack.github.io/helm-charts'
+    - 'https://1password.github.io/connect-helm-charts'
   destinations:
     - namespace: 'argocd'
       server: '*'
     - namespace: 'cilium-secrets'
       server: '*'
     - namespace: 'kube-system'
+      server: '*'
+    - namespace: '1passwordconnect'
       server: '*'
   clusterResourceWhitelist:
     - group: '*'
