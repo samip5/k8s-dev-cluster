@@ -6,7 +6,7 @@ metadata:
 spec:
   sourceRepos:
     - 'https://github.com/samip5/k8s-dev-cluster.git'
-    - 'https://ori-edge.github.io/k8s_gateway/'
+    - 'https://k8s-gateway.github.io/k8s_gateway/'
     - 'https://argoproj.github.io/argo-helm'
   destinations:
     - namespace: 'argocd'

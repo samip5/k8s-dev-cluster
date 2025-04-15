@@ -3,8 +3,8 @@ kind: Kustomization
 
 helmCharts:
   - name: k8s-gateway
-    repo: https://ori-edge.github.io/k8s_gateway/
-    version: 2.4.0
+    repo: https://k8s-gateway.github.io/k8s_gateway/
+    version:  3.1.0
     releaseName: "k8s-gateway"
     includeCRDs: true
     namespace: network
