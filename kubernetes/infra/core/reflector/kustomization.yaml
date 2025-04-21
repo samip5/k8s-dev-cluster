@@ -4,7 +4,7 @@ kind: Kustomization
 helmCharts:
   - name: reflector
     repo: https://emberstack.github.io/helm-charts
-    version: 9.0.322
+    version: 9.0.342
     releaseName: "reflector"
     includeCRDs: true
     namespace: kube-system
