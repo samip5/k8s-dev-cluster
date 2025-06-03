@@ -50,7 +50,7 @@ spec:
           image:
             registry: docker.io
             repository: bitnami/postgresql
-            tag: 17.5.0-debian-12-r9
+            tag: 17.5.0-debian-12-r10
       syncPolicy:
         automated:
           prune: true
