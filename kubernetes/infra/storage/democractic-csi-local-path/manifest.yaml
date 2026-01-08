@@ -11,7 +11,7 @@ spec:
   source:
     chart: democratic-csi
     repoURL: https://democratic-csi.github.io/charts/
-    targetRevision: 0.15.0
+    targetRevision: 0.15.1
     helm:
       valuesObject:
         csiDriver:
